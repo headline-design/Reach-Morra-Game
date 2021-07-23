@@ -1,10 +1,7 @@
 'reach 0.1';
 
-// const [ isFingers, ZERO, ONE, TWO ] = makeEnum(3);
-// const [ isGuess, ZEROG, ONEG, TWOG, THREEG, FOURG ] = makeEnum(5);
 const [ isFingers, ZERO, ONE, TWO, THREE, FOUR, FIVE ] = makeEnum(6);
 const [ isGuess, ZEROG, ONEG, TWOG, THREEG, FOURG, FIVEG, SIXG, SEVENG, EIGHTG, NINEG, TENG ] = makeEnum(11);
-
 const [ isOutcome, B_WINS, DRAW, A_WINS ] = makeEnum(3);
 
 const winner = (fingersA, fingersB, guessA, guessB) => { 
@@ -58,7 +55,6 @@ const Player =
         seeWinning: Fun([UInt], Null),
         seeOutcome: Fun([UInt], Null) ,
         informTimeout: Fun([], Null)
-
        };
 const Alice =
         { ...Player,

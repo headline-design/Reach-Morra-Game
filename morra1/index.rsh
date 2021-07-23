@@ -51,42 +51,30 @@ export const main =
       
       commit();
 
-      // if (if  fingersA plus fingersB = guessA ) and (if fingersA plus fingersB = guessB))
-      //    tie outcome = 1 
-      // else if fingersA plus fingersB = guessA
-      //    winner outcome player A wins = 2 
-      // else if fingersA plus fingersB = guessB
-      //    winner outcome player B wins = 0       
-      // else tie else = 1
-      // var outcome = 1 // default to tie
-      const matchoutcome = () => {
-    
-        if ( ((fingersA + fingersB) == guessA ) 
-        && ((fingersA + fingersB) == guessB)) {
-        const outcome = 1; //tie
-        return outcome;
+      const matchoutcome = () => {   
+      if ( guessA == guessB ) 
+      {
+        const myoutcome = DRAW; //tie
+        return myoutcome;
       } else {
         if ( ((fingersA + fingersB) == guessA ) ) {
-          const outcome = 2;
-          return outcome;// player Alice wins
+          const myoutcome = A_WINS;
+          return myoutcome;// player A wins
         } 
           else {
             if (  ((fingersA + fingersB) == guessB)) {
-              const outcome = 0;
-              return outcome;// player Bob wins
+              const myoutcome = B_WINS;
+              return myoutcome;// player B wins
           } 
             else {
-              const outcome = 1; // tie
-              return outcome;
+              const myoutcome = DRAW; // tie
+              return myoutcome;
             }
           
           }
         }
       }
-      
-
- 
+       
       each([A, B], () => {
-
         interact.seeOutcome(matchoutcome()); });
       exit(); });
