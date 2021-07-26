@@ -1,13 +1,14 @@
 'reach 0.1';
 
-const [ isHand, ROCK, PAPER, SCISSORS ] = makeEnum(3);
+// const [ isHand, ROCK, PAPER, SCISSORS ] = makeEnum(3);
 const [ isOutcome, B_WINS, DRAW, A_WINS ] = makeEnum(3);
+// const [ isFingers, ZERO, ONE, TWO, THREE, FOUR, FIVE ] = makeEnum(6);
+// const [ isGuess, ZEROG, ONEG, TWOG, THREEG, FOURG, FIVEG, SIXG, SEVENG, EIGHTG, NINEG, TENG ] = makeEnum(11);
 
 
 const Player =
       { getFingers: Fun([], UInt),
-        getGuess: Fun([], UInt),
-        seeGuess: Fun([UInt], Null),
+        getGuess: Fun([UInt], UInt),
         seeWinning: Fun([UInt], Null),
         seeOutcome: Fun([UInt], Null) };
 
@@ -18,12 +19,10 @@ export const main =
     (A, B) => {
       A.only(() => {
         const _fingersA = interact.getFingers();
-        const _guessA = interact.getGuess();
-        const _educatedGuessA = _fingersA + _guessA ;
+        const _guessA = interact.getGuess(_fingersA);
 
         const fingersA = declassify(_fingersA); 
-        const guessA = declassify(_educatedGuessA);
-        interact.seeGuess(guessA);
+        const guessA = declassify(_guessA);
       });
      
       A.publish(fingersA);
@@ -36,13 +35,11 @@ export const main =
       B.only(() => {
 
         const _fingersB = interact.getFingers();
-        const _guessB = interact.getGuess();
-        const _educatedGuessB = _fingersB + _guessB ;
+        const _guessB = interact.getGuess(_fingersB);
 
         const fingersB = declassify(_fingersB); 
-        const guessB = declassify(_educatedGuessB);   
-        interact.seeGuess(guessB);
-        interact.seeWinning(fingersA + fingersB);  
+        const guessB = declassify(_guessB);   
+ 
         });
 
       B.publish(fingersB);
@@ -50,7 +47,13 @@ export const main =
       B.publish(guessB);
       
       commit();
-
+      A.only(() => {        
+        const WinningNumber = fingersA + fingersB;
+        interact.seeWinning(WinningNumber);
+      });
+      // ??? do i need a timeout here? 
+      A.publish(WinningNumber)
+      commit();
       const matchoutcome = () => {   
       if ( guessA == guessB ) 
       {

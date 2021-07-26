@@ -6,16 +6,9 @@ import * as backend from './build/index.main.mjs';
   const startingBalance = stdlib.parseCurrency(10);
   // getFaucet and balanceOf
   // const acc = await reach.getDefaultAccount();
-  // const balance2 = reach.getFaucet();
-  // const balAtomic = await reach.balanceOf(balance2);
-
-  // console.log(`Balance on faucet: ${balAtomic}`);
-  // const balance = reach.balanceOf('MYKELEDQXKXN23JIDYSBKYHC3KEBU6ATK37W5JQJ7NCZMALETU34NIAKQ');
-  // console.log(`Balance on MYKELEDQXKXN23JIDYSBKYHC3KEBU6ATK37W5JQJ7NCZMALETU34NIAKQ: ${balance}`);
-  
- // const faucet = await reach.getFaucet();
+  // console.log(`Balance on MYKELEDQXKXN23JIDYSBKYHC3KEBU6ATK37W5JQJ7NCZMALETU34NIAKQ: ${balance2}`); 
+  // const faucet = await reach.getFaucet();
   const accAlice = await stdlib.newTestAccount(startingBalance);
-
   const accBob = await stdlib.newTestAccount(startingBalance);
 
   const fmt = (x) => stdlib.formatCurrency(x, 4);
@@ -26,8 +19,6 @@ import * as backend from './build/index.main.mjs';
   const ctcAlice = accAlice.deploy(backend);
   const ctcBob = accBob.attach(backend, ctcAlice.getInfo());
 
-  // const FINGERS = ['0', '1', '2'];
-  // const GUESS = ['0', '1', '2', '3', '4'];  
   const FINGERS = [0, 1, 2, 3, 4, 5];
   const GUESS = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];  
   const OUTCOME = ['Bob wins', 'Draw', 'Alice wins'];
