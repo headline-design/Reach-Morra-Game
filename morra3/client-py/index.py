@@ -4,10 +4,15 @@ import random
 from threading import Thread
 from reach_rpc import mk_rpc
 
-
+# opts = {
+#   "host": "http://localhost",
+#   "port": "4001",
+#   "key": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+#   "timeout":10
+# }
 def main():
+    # rpc, rpc_callbacks = mk_rpc(opts)
     rpc, rpc_callbacks = mk_rpc()
-
     starting_balance = rpc('/stdlib/parseCurrency', 10)
     acc_alice = rpc('/stdlib/newTestAccount', starting_balance)
     acc_bob = rpc('/stdlib/newTestAccount', starting_balance)
