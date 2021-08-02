@@ -75,7 +75,6 @@ import * as backend from './build/index.main.mjs';
       acceptWager: (amt) => {
         console.log(`----------------------------`);        
         console.log(`Bob accepts the wager of ${fmt(amt)}.`);
-
       },
       ...stdlib.hasConsoleLogger,      
     }),
