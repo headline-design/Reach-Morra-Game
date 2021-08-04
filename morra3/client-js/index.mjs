@@ -2,7 +2,13 @@
 import { mkRPC } from '@reach-sh/rpc-client';
 
 (async () => {
-
+  // var ops = {
+  //   host: "http://localhost",
+  //   port: 4001,
+  //   key: "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  //   verify: '0',
+  //   timeout: 10
+  // };
   // const { rpc, rpcCallbacks } = await mkRPC(opts);
   const { rpc, rpcCallbacks } = await mkRPC();
   const startingBalance = await rpc(`/stdlib/parseCurrency`,  10);
@@ -53,14 +59,13 @@ import { mkRPC } from '@reach-sh/rpc-client';
       console.log(`${Who} observed a timeout`);
     },
   });
-
+    //  log: console.log,
   await Promise.all([
     rpcCallbacks(`/backend/Alice`, ctcAlice, {  
 
       ...Player('Alice'),
       wager: await rpc(`/stdlib/parseCurrency`, 5),
-      "stdlib.hasConsoleLogger": true,  
-
+      log: console.log,
     }),
     rpcCallbacks(`/backend/Bob`, ctcBob, {
 
@@ -70,7 +75,7 @@ import { mkRPC } from '@reach-sh/rpc-client';
         console.log(`Bob accepts the wager of ${await fmt(amt)}.`);
 
       },
-      "stdlib.hasConsoleLogger": true,  
+      log: console.log,
     }),
   ]);
   const afterAlice = await getBalance(accAlice);
