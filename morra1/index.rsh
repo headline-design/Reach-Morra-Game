@@ -1,9 +1,6 @@
 'reach 0.1';
 
-// const [ isHand, ROCK, PAPER, SCISSORS ] = makeEnum(3);
 const [ isOutcome, B_WINS, DRAW, A_WINS ] = makeEnum(3);
-// const [ isFingers, ZERO, ONE, TWO, THREE, FOUR, FIVE ] = makeEnum(6);
-// const [ isGuess, ZEROG, ONEG, TWOG, THREEG, FOURG, FIVEG, SIXG, SEVENG, EIGHTG, NINEG, TENG ] = makeEnum(11);
 
 
 const Player =
@@ -17,10 +14,14 @@ export const main =
     {},
     [Participant('Alice', Player), Participant('Bob', Player)],
     (A, B) => {
+      // for Alice only
       A.only(() => {
+        // interact methods w front end for Alice
         const _fingersA = interact.getFingers();
         const _guessA = interact.getGuess(_fingersA);
 
+        // bind the value of the result of interacting with Alice through the 
+        // getFingers and getGuess methods, which are in JavaScript frontend.
         const fingersA = declassify(_fingersA); 
         const guessA = declassify(_guessA);
       });
@@ -31,19 +32,22 @@ export const main =
       A.publish(guessA);
       commit();
 
-
+      // for Bob only
       B.only(() => {
 
+        // interact methods w front end for Bob
         const _fingersB = interact.getFingers();
         const _guessB = interact.getGuess(_fingersB);
-
+       
+        // bind the value of the result of interacting with Alice through the 
+        // getFingers and getGuess methods, which are in JavaScript frontend.
         const fingersB = declassify(_fingersB); 
         const guessB = declassify(_guessB);   
  
         });
 
       B.publish(fingersB);
-      commit();
+      commit(); // writes to blockchain, commits the state 
       B.publish(guessB);
       
       commit();
@@ -51,9 +55,11 @@ export const main =
         const WinningNumber = fingersA + fingersB;
         interact.seeWinning(WinningNumber);
       });
-      // ??? do i need a timeout here? 
+     
       A.publish(WinningNumber)
       commit();
+
+      // logic for game
       const matchoutcome = () => {   
       if ( guessA == guessB ) 
       {
@@ -77,7 +83,7 @@ export const main =
           }
         }
       }
-       
+      // see outcome for game for each player - both of them
       each([A, B], () => {
         interact.seeOutcome(matchoutcome()); });
       exit(); });

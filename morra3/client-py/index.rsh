@@ -30,7 +30,6 @@ const winner = (fingersA, fingersB, guessA, guessB) => {
 };
 
 
-// ??? how to do this?
 assert(winner(ZERO,TWO,ZEROG,TWOG)== B_WINS);
 assert(winner(TWO,ZERO,TWOG,ZEROG)== A_WINS);
 assert(winner(ZERO,ONE,ZEROG,TWOG)== DRAW);
@@ -42,7 +41,6 @@ forall(UInt, fingersA =>
       forall(UInt, guessB =>
     assert(isOutcome(winner(fingersA, fingersB, guessA, guessB)))))));
 
-// is this right?
 forall(UInt, (fingerA) =>
   forall(UInt, (fingerB) =>       
     forall(UInt, (guess) =>

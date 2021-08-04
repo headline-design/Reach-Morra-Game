@@ -4,10 +4,7 @@ import * as backend from './build/index.main.mjs';
 (async () => {
   const stdlib = await loadStdlib();
   const startingBalance = stdlib.parseCurrency(10);
-  // getFaucet and balanceOf
-  // const acc = await reach.getDefaultAccount();
-  // console.log(`Balance on MYKELEDQXKXN23JIDYSBKYHC3KEBU6ATK37W5JQJ7NCZMALETU34NIAKQ: ${balance2}`); 
-  // const faucet = await reach.getFaucet();
+
   const accAlice = await stdlib.newTestAccount(startingBalance);
   const accBob = await stdlib.newTestAccount(startingBalance);
 

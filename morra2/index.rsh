@@ -4,8 +4,8 @@ const [ isFingers, ZERO, ONE, TWO, THREE, FOUR, FIVE ] = makeEnum(6);
 const [ isGuess, ZEROG, ONEG, TWOG, THREEG, FOURG, FIVEG, SIXG, SEVENG, EIGHTG, NINEG, TENG ] = makeEnum(11);
 const [ isOutcome, B_WINS, DRAW, A_WINS ] = makeEnum(3);
 
+// game logic
 const winner = (fingersA, fingersB, guessA, guessB) => { 
- 
   if ( guessA == guessB ) 
    {
     const myoutcome = DRAW; //tie
@@ -30,24 +30,29 @@ const winner = (fingersA, fingersB, guessA, guessB) => {
 };
 
 
-// ??? how to do this?
+// assertion that when 
+// Alice throws a 0, AND Bob throws a 2, 
+// and Alice guesses 0 and Bob guesses 2
+// then Bob wins as the total thrown is 2
 assert(winner(ZERO,TWO,ZEROG,TWOG)== B_WINS);
 assert(winner(TWO,ZERO,TWOG,ZEROG)== A_WINS);
 assert(winner(ZERO,ONE,ZEROG,TWOG)== DRAW);
 assert(winner(ONE,ONE,ONEG,ONEG)== DRAW);
 
+// assets for all combinations
 forall(UInt, fingersA =>
   forall(UInt, fingersB =>
     forall(UInt, guessA =>
       forall(UInt, guessB =>
     assert(isOutcome(winner(fingersA, fingersB, guessA, guessB)))))));
 
-// is this right?
+//  asserts for a draw - each guesses the same
 forall(UInt, (fingerA) =>
   forall(UInt, (fingerB) =>       
     forall(UInt, (guess) =>
       assert(winner(fingerA, fingerB, guess, guess) == DRAW))));    
 
+// added a timeout function
 const Player =
       { ...hasRandom,
         getFingers: Fun([], UInt),
@@ -56,11 +61,13 @@ const Player =
         seeOutcome: Fun([UInt], Null) ,
         informTimeout: Fun([], Null)
        };
+// added a wager function for Alice       
 const Alice =
         { ...Player,
           wager: UInt, 
           ...hasConsoleLogger
         };
+// added a acceptWager function for Bob
 const Bob =
         { ...Player,
           acceptWager: Fun([UInt], Null),
@@ -89,6 +96,7 @@ export const main =
 
       var outcome = DRAW;      
       invariant(balance() == 2 * wager && isOutcome(outcome) );
+      // loop until we have a winner
       while ( outcome == DRAW ) {
         commit();
 
@@ -97,13 +105,14 @@ export const main =
           const _guessA = interact.getGuess(_fingersA);         
           // interact.log(_fingersA);  
           // interact.log(_guessA);  
-          // We need Alice to be able to publish her hand, but also keep it secret.  makeCommitment does this.    
+          // We need Alice to be able to publish her fingers and guess, 
+          // but also keep it secret.  makeCommitment does this.    
                       
           const [_commitA, _saltA] = makeCommitment(interact, _fingersA);
           const commitA = declassify(_commitA);        
           const [_guessCommitA, _guessSaltA] = makeCommitment(interact, _guessA);
           const guessCommitA = declassify(_guessCommitA); 
-          // const fingersA = declassify(_fingersA);   
+  
       });
      
         A.publish(commitA)
@@ -114,9 +123,10 @@ export const main =
           .timeout(DEADLINE, () => closeTo(B, informTimeout));
           ;
         commit();
-
+        // Bob does not know the values for Alice, but Alice does know the values 
         unknowable(B, A(_fingersA, _saltA));
         unknowable(B, A(_guessA, _guessSaltA));
+
         B.only(() => {
 
           const _fingersB = interact.getFingers();
@@ -136,6 +146,7 @@ export const main =
           ;
         
         commit();
+        // Alice will declassify the secret information
         A.only(() => {
           const [saltA, fingersA] = declassify([_saltA, _fingersA]); 
           const [guessSaltA, guessA] = declassify([_guessSaltA, _guessA]); 
@@ -143,12 +154,13 @@ export const main =
         });
         A.publish(saltA, fingersA)
           .timeout(DEADLINE, () => closeTo(B, informTimeout));
+        // check that the published values match the original values.
         checkCommitment(commitA, saltA, fingersA);
         commit();
 
         A.publish(guessSaltA, guessA)
         .timeout(DEADLINE, () => closeTo(B, informTimeout));
-       // checkCommitment(guessCommitA, guessSaltA, guessA);
+        checkCommitment(guessCommitA, guessSaltA, guessA);
 
         commit();
       
@@ -156,7 +168,7 @@ export const main =
           const WinningNumber = fingersA + fingersB;
           interact.seeWinning(WinningNumber);
         });
-        // ??? do i need a timeout here? 
+     
         A.publish(WinningNumber)
         .timeout(DEADLINE, () => closeTo(A, informTimeout));
 
@@ -166,6 +178,7 @@ export const main =
       }
 
       assert(outcome == A_WINS || outcome == B_WINS);
+      // send winnings to winner 
       transfer(2 * wager).to(outcome == A_WINS ? A : B);
       commit();
  
