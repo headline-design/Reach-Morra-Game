@@ -8,7 +8,7 @@ import * as backend from './build/index.main.mjs';
 const stdlib = loadStdlib(process.env);
 
 (async () => {
-  const stdlib = await loadStdlib();
+  //const stdlib = await loadStdlib();
  
   // defines a quantity of network tokens as the 
   // starting balance for each test account.

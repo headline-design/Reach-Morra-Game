@@ -2,7 +2,7 @@
 
 const [ isOutcome, B_WINS, DRAW, A_WINS ] = makeEnum(3);
 
-
+// interface methods coded in frontend
 const Player =
       { getFingers: Fun([], UInt),
         getGuess: Fun([UInt], UInt),
@@ -39,7 +39,7 @@ export const main =
         const _fingersB = interact.getFingers();
         const _guessB = interact.getGuess(_fingersB);
        
-        // bind the value of the result of interacting with Alice through the 
+        // bind the value of the result of interacting with Bob through the 
         // getFingers and getGuess methods, which are in JavaScript frontend.
         const fingersB = declassify(_fingersB); 
         const guessB = declassify(_guessB);   
@@ -85,5 +85,6 @@ export const main =
       }
       // see outcome for game for each player - both of them
       each([A, B], () => {
+        
         interact.seeOutcome(matchoutcome()); });
       exit(); });

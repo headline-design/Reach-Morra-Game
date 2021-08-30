@@ -2,15 +2,15 @@
 import { mkRPC } from '@reach-sh/rpc-client';
 
 (async () => {
-  // var ops = {
-  //   host: "http://localhost",
-  //   port: 4001,
-  //   key: "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-  //   verify: '0',
-  //   timeout: 10
-  // };
-  // const { rpc, rpcCallbacks } = await mkRPC(opts);
-  const { rpc, rpcCallbacks } = await mkRPC();
+  var opts = {
+    // host: "http://localhost",
+    // port: 4001,
+    // key: "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    verify: '0',
+    timeout: 10
+  };
+  const { rpc, rpcCallbacks } = await mkRPC(opts);
+  // const { rpc, rpcCallbacks } = await mkRPC();
   const startingBalance = await rpc(`/stdlib/parseCurrency`,  10);
   const accAlice        = await rpc(`/stdlib/newTestAccount`, startingBalance);
   const accBob          = await rpc(`/stdlib/newTestAccount`, startingBalance);

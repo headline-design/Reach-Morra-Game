@@ -154,7 +154,7 @@ export const main =
           const WinningNumber = fingersA + fingersB;
           interact.seeWinning(WinningNumber);
         });
-        // ??? do i need a timeout here? 
+  
         A.publish(WinningNumber)
         .timeout(DEADLINE, () => closeTo(A, informTimeout));
 

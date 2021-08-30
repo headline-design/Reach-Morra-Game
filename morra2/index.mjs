@@ -40,6 +40,7 @@ import * as backend from './build/index.main.mjs';
      // guess should be greater than or equal to number of fingers thrown
      // const guess= Math.floor(Math.random() * 3);
       const guess= Math.floor(Math.random() * 6) + FINGERS[fingers];
+     // occassional timeout
       if ( Math.random() <= 0.01 ) {
         for ( let i = 0; i < 10; i++ ) {
           console.log(`  ${Who} takes their sweet time sending it back...`);
