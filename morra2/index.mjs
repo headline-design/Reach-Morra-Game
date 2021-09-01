@@ -24,8 +24,7 @@ import * as backend from './build/index.main.mjs';
     ...stdlib.hasRandom,
     getFingers: async () => {
      // const fingers = Math.floor(Math.random() * 3);
-      const fingers = Math.floor(Math.random() * 6);
-      console.log(`----------------------------`);          
+      const fingers = Math.floor(Math.random() * 6);         
       console.log(`${Who} shoots ${FINGERS[fingers]} fingers`);
  
       if ( Math.random() <= 0.01 ) {
@@ -52,6 +51,7 @@ import * as backend from './build/index.main.mjs';
     },
     seeWinning: (winningNumber) => {    
       console.log(`Actual total fingers thrown: ${winningNumber}`);
+      console.log(`----------------------------`);  
     },
 
     seeOutcome: (outcome) => {
@@ -65,13 +65,12 @@ import * as backend from './build/index.main.mjs';
   await Promise.all([
     backend.Alice(ctcAlice, {
       ...Player('Alice'),
-        wager: stdlib.parseCurrency(5),    
-        ...stdlib.hasConsoleLogger,
+      wager: stdlib.parseCurrency(5),    
+      ...stdlib.hasConsoleLogger,
     }),
     backend.Bob(ctcBob, {
       ...Player('Bob'),
-      acceptWager: (amt) => {
-        console.log(`----------------------------`);        
+      acceptWager: (amt) => {      
         console.log(`Bob accepts the wager of ${fmt(amt)}.`);
       },
       ...stdlib.hasConsoleLogger,      

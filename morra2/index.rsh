@@ -102,7 +102,7 @@ export const main =
         A.only(() => {    
           const _fingersA = interact.getFingers();
           const _guessA = interact.getGuess(_fingersA);         
-          // interact.log(_fingersA);  
+          interact.log(_fingersA);  
           // interact.log(_guessA);  
           // We need Alice to be able to publish her fingers and guess, 
           // but also keep it secret.  makeCommitment does this.    

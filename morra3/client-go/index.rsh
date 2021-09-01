@@ -95,7 +95,7 @@ export const main =
 
         A.only(() => {    
           const _fingersA = interact.getFingers();
-           // interact.log(_fingersA);          
+          // interact.log(_fingersA);          
           const _guessA = interact.getGuess(_fingersA);         
  
           // interact.log(_guessA);  

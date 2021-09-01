@@ -2,15 +2,15 @@
 import { mkRPC } from '@reach-sh/rpc-client';
 
 (async () => {
-  var opts = {
-    // host: "http://localhost",
-    // port: 4001,
-    // key: "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-    verify: '0',
-    timeout: 10
-  };
-  const { rpc, rpcCallbacks } = await mkRPC(opts);
-  // const { rpc, rpcCallbacks } = await mkRPC();
+  // var opts = {
+  //   // host: "http://localhost",
+  //   // port: 4001,
+  //   // key: "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  //   verify: '0',
+  //   timeout: 10
+  // };
+  // const { rpc, rpcCallbacks } = await mkRPC(opts);
+  const { rpc, rpcCallbacks } = await mkRPC();
   const startingBalance = await rpc(`/stdlib/parseCurrency`,  10);
   const accAlice        = await rpc(`/stdlib/newTestAccount`, startingBalance);
   const accBob          = await rpc(`/stdlib/newTestAccount`, startingBalance);
@@ -35,7 +35,7 @@ import { mkRPC } from '@reach-sh/rpc-client';
     "stdlib.hasRandom": true,  
     getFingers: async () => {
       const fingers = Math.floor(Math.random() * 6);
-      console.log(`----------------------------`);          
+            
       console.log(`${Who} shoots ${FINGERS[fingers]} fingers`);     
       return fingers;
     },
@@ -49,6 +49,7 @@ import { mkRPC } from '@reach-sh/rpc-client';
     seeWinning: async (winningNumberBN) => {    
       const winningNumber = await rpc(`/stdlib/bigNumbertoNumber`, winningNumberBN);
       console.log(`Actual total fingers thrown: ${winningNumber}`);
+      console.log(`----------------------------`); 
     },
     seeOutcome: async (outcomeBN) => {
       const outcome = await rpc(`/stdlib/bigNumbertoNumber`, outcomeBN);
@@ -70,10 +71,8 @@ import { mkRPC } from '@reach-sh/rpc-client';
     rpcCallbacks(`/backend/Bob`, ctcBob, {
 
       ...Player('Bob'),
-      acceptWager: async (amt) => {
-        console.log(`----------------------------`);        
+      acceptWager: async (amt) => {       
         console.log(`Bob accepts the wager of ${await fmt(amt)}.`);
-
       },
       log: console.log,
     }),

@@ -4,13 +4,13 @@ import random
 from threading import Thread
 from reach_rpc import mk_rpc
 
-opts = {
-    # "host": "https://localhost",
-    # "port": 8080,
-    # "key": "8024065d94521d253181cff008c44fa4ae4bdf44f028834cd4b4769a26282de1",
-    "verify": '0',
-    "timeout": 10
-}
+# opts = {
+#     # "host": "https://localhost",
+#     # "port": 8080,
+#     # "key": "8024065d94521d253181cff008c44fa4ae4bdf44f028834cd4b4769a26282de1",
+#     "verify": '0',
+#     "timeout": 10
+# }
 
 
 def main():
@@ -40,21 +40,19 @@ def main():
     def player(who):
         def getFingers():
             fingers = random.randint(0, 5)
-            print('----------------------------')
             print('%s shoots %s fingers' % (who, FINGERS[fingers]))
             return rpc('/stdlib/bigNumberToNumber', fingers)
 
         def getGuess(fingers):
             guess = (random.randint(
                 0, 5)) + FINGERS[rpc('/stdlib/bigNumberToNumber', fingers)]
-            print('----------------------------')
             print('%s guessed total of %s' % (who, GUESS[guess]))
             return rpc('/stdlib/bigNumberToNumber', guess)
 
         def seeWinning(winningNumber):
             print('Actual total fingers thrown: %s' %
                   rpc('/stdlib/bigNumberToNumber', winningNumber))
-
+            print('----------------------------') 
         def informTimeout():
             print('%s observed a timeout' % who)
 
@@ -74,7 +72,7 @@ def main():
         rpc_callbacks(
             '/backend/Alice',
             ctc_alice,
-            dict(wager=rpc('/stdlib/parseCurrency', 5), deadline=10, **player('Alice')))
+            dict(wager=rpc('/stdlib/parseCurrency', 5), deadline=10, log=print ,  **player('Alice')))
 
     alice = Thread(target=play_alice)
     alice.start()

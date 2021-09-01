@@ -12,7 +12,8 @@ import (
 // filesystem in order to remain in-sync with the repository's client code, but
 // frontend authors will normally import from GitHub like so:
 import reachrpc "github.com/reach-sh/reach-lang/rpc-client/go"
-// import "reachrpc"
+
+//import "reachrpc"
 
 type jsono = map[string]interface {}
 
@@ -72,6 +73,7 @@ func main() {
     seeWinning := func (winningNumber jsono) {
       o := int(rpc("/stdlib/bigNumberToNumber", winningNumber).(float64))
       fmt.Printf("Actual total fingers thrown:  %d\n", GUESS[o])
+      fmt.Printf("----------------------------\n")     
  
     }
 
@@ -95,16 +97,18 @@ func main() {
       "seeOutcome":       seeOutcome,
     }
   }
-
+  // localPrint := func(n jsono) {
+  //   fmt.Println(n)    
+  // }
   wg := new(sync.WaitGroup)
   wg.Add(2)
 
   playAlice := func() {
     defer wg.Done()
-
     d := player("Alice")
     d["wager"] = rpc("/stdlib/parseCurrency", 5).(jsono)
     d["deadline"] = 10
+    // d["log"] = localPrint.(jsono)
     rpcCallbacks("/backend/Alice", ctcAlice, d)
   }
 
@@ -112,7 +116,7 @@ func main() {
     defer wg.Done()
 
     d := player("Bob")
-    d["acceptWager"] = func(amt jsono) {
+    d["acceptWager"] = func(amt jsono) {  
       fmt.Printf("Bob accepts the wager of %s\n", fmtc(amt))
     }
 
