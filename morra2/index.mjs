@@ -26,7 +26,7 @@ import * as backend from './build/index.main.mjs';
      // const fingers = Math.floor(Math.random() * 3);
       const fingers = Math.floor(Math.random() * 6);         
       console.log(`${Who} shoots ${FINGERS[fingers]} fingers`);
- 
+     // build in occasional timeout
       if ( Math.random() <= 0.01 ) {
         for ( let i = 0; i < 10; i++ ) {
           console.log(`  ${Who} takes their sweet time sending it back...`);

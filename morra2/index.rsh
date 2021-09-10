@@ -101,7 +101,8 @@ export const main =
         commit();
         A.only(() => {    
           const _fingersA = interact.getFingers();
-          const _guessA = interact.getGuess(_fingersA);         
+          const _guessA = interact.getGuess(_fingersA);  
+          // log fingersA to frontend       
           interact.log(_fingersA);  
           // interact.log(_guessA);  
           // We need Alice to be able to publish her fingers and guess, 
