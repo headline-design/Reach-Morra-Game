@@ -10,3 +10,7 @@ github.com/reach-sh/reach-lang/rpc-client/go v0.0.0-20210901141127-1dc9285228f6 
 github.com/reach-sh/reach-lang/rpc-client/go v0.0.0-20210901141127-1dc9285228f6/go.mod h1:DYBIr+GSAkPzI//9ndzL+tHhhCNPzwQ2HMOTyo/6nmk=
 github.com/reach-sh/reach-lang/rpc-client/go v0.0.0-20210901202249-7e2f63e96d0f h1:WnXf6Wm64X4pLg4JKEKx2bWmg3JneTd9I69KHq0rQPU=
 github.com/reach-sh/reach-lang/rpc-client/go v0.0.0-20210901202249-7e2f63e96d0f/go.mod h1:DYBIr+GSAkPzI//9ndzL+tHhhCNPzwQ2HMOTyo/6nmk=
+github.com/reach-sh/reach-lang/rpc-client/go v0.0.0-20210902165109-6dd84386e2a2 h1:AxOazqBS/vMs/NIffEtEYuC7/S0h+oz0kqPmKZ59xAY=
+github.com/reach-sh/reach-lang/rpc-client/go v0.0.0-20210902165109-6dd84386e2a2/go.mod h1:DYBIr+GSAkPzI//9ndzL+tHhhCNPzwQ2HMOTyo/6nmk=
+github.com/reach-sh/reach-lang/rpc-client/go v0.0.0-20210902234802-06c39c50becf h1:i1REV5uKdVFfb+5IZRosjzd50kAQn5HrtDEnL/dv05s=
+github.com/reach-sh/reach-lang/rpc-client/go v0.0.0-20210902234802-06c39c50becf/go.mod h1:DYBIr+GSAkPzI//9ndzL+tHhhCNPzwQ2HMOTyo/6nmk=
