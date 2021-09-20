@@ -1,6 +1,30 @@
-# Morra (dApp using Reach)
-This sample game simulation was created by using the blockchain Reach development system. https://reach.sh/
+# Experimental sandbox for Pipeline + Reach + Algorand integration
 
-The game of Morra is played between two or more players. The game consists of throwing a number of fingers (0-5) and guessing the total between you and your opponent. The winner is the one who guesses correctly. If both guess corectly, it is a draw. Play continues until a winner is declared. 
+## Introduction
 
-This is a simulated game between two players, Bob and Alice. Random number of fingers thrown for each player, and random guesses are based on the number of fingers thrown. 
+This is a frontend application for running a "Morra game" created by Russ Fustino. The original Reach program is included in src/ for reference. The compiled reach program and smart contract is located in build/. The frontend logic is now located in src/App.js. 
+
+## Starting Reach Algorand devnet:
+
+After installing reach, run the following line in reach/tut in a Linux shell:
+
+```bash
+$ REACH_CONNECTOR_MODE=ALGO ./reach devnet
+```
+
+After starting the devnet, find the ip address that corresponds to your localhost (this will allow testing on different devices on the same local network).
+
+Open src/App.js and replace the "localhost" on the following two lines with your local ip address:
+
+```jsx
+myEnv.ALGO_INDEXER_SERVER = "http://localhost";
+myEnv.ALGO_SERVER = "http://localhost";
+```
+
+## Running the React App
+
+```bash
+cd pipeline-morra-reach
+npm install
+npm run start
+```
