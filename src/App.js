@@ -14,8 +14,14 @@ const reach = loadStdlib('ALGO-devnet')
 
 const myEnv = reach.providerEnvByName('LocalHost');
 console.log(myEnv)
-myEnv.ALGO_INDEXER_SERVER = "http://localhost";
-myEnv.ALGO_SERVER = "http://localhost";
+Object.assign(myEnv, {
+  ALGO_SERVER:"https://4180-olive-worm-c2kgproj.ws-us18.gitpod.io",
+  ALGO_PORT: "",
+  ALGO_INDEXER_SERVER: "https://8980-olive-worm-c2kgproj.ws-us18.gitpod.io",
+  ALGO_INDEXER_PORT: "",
+  REACH_ISOLATED_NETWORK: "no",
+  REACH_DEBUG: "1",
+})
 reach.setProviderByEnv(myEnv);
 
 async function test() {
