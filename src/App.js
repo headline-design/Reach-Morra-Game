@@ -15,9 +15,9 @@ const reach = loadStdlib('ALGO-devnet')
 const myEnv = reach.providerEnvByName('LocalHost');
 console.log(myEnv)
 Object.assign(myEnv, {
-  ALGO_SERVER:"http://143.198.113.102",
+  ALGO_SERVER:"https://algocloud.org",
   ALGO_PORT: "4180",
-  ALGO_INDEXER_SERVER: "http://143.198.113.102",
+  ALGO_INDEXER_SERVER: "https://algocloud.org",
   ALGO_INDEXER_PORT: "8980",
   REACH_ISOLATED_NETWORK: "no",
   REACH_DEBUG: "1",
