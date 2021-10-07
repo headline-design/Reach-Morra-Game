@@ -29,10 +29,10 @@ npm run start
 
 - Before activating Morra, you must make the ports 8980 and 4180 public in Gitpod.
 - You must edit the app.js environment variables to point to the exposed ports (full urls)
-
+``` bash
   ALGO_SERVER:"Gitpod-public-port-1"
   ALGO_INDEXER_SERVER: "Gitpod-public-port-2"
-
+```
 ----- End Gitpod instructions
 
 ## Starting Reach Algorand devnet:
