@@ -2,7 +2,9 @@
 
 ## Introduction
 
-This is a frontend application for running a "Morra game" created by Russ Fustino. The original Reach program is included in src/ for reference. The compiled reach program and smart contract is located in build/. The frontend logic is now located in src/App.js. 
+This is a frontend application for running a "Morra game" created by Russ Fustino. The original Reach program is included in src/ for reference. The compiled reach program and smart contract is located in build/. The frontend logic is now located in src/App.js.
+
+# Gitpod Instructions
 
 ## Reach - All commands
 
@@ -12,6 +14,23 @@ $ curl https://docs.reach.sh/reach -o reach ; chmod +x reach
 $ ./reach version
 $ REACH_CONNECTOR_MODE=ALGO ./reach devnet
 ```
+## Running the React App
+
+```bash
+cd pipeline-morra-reach
+npm install
+npm run start
+```
+
+## Final steps
+
+- Before activating Morra, you must make the ports 8980 and 4180 public in Gitpod.
+- You must edit the app.js environment variables to point to the exposed ports (full urls)
+
+  ALGO_SERVER:"Gitpod-public-port-1"
+  ALGO_INDEXER_SERVER: "Gitpod-public-port-2"
+
+----- End Gitpod instructions
 
 ## Starting Reach Algorand devnet:
 
