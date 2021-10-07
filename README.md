@@ -4,6 +4,15 @@
 
 This is a frontend application for running a "Morra game" created by Russ Fustino. The original Reach program is included in src/ for reference. The compiled reach program and smart contract is located in build/. The frontend logic is now located in src/App.js. 
 
+## Reach - All commands
+
+```bash
+$ mkdir -p ~/reach/tut && cd ~/reach/tut
+$ curl https://docs.reach.sh/reach -o reach ; chmod +x reach
+$ ./reach version
+$ REACH_CONNECTOR_MODE=ALGO ./reach devnet
+```
+
 ## Starting Reach Algorand devnet:
 
 After installing reach, run the following line in reach/tut in a Linux shell:
