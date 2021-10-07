@@ -6,6 +6,9 @@ This is a frontend application for running a "Morra game" created by Russ Fustin
 
 # Gitpod Instructions
 
+[![Edit with Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/headline-design/Reach-Morra-Game)
+
+
 ## Reach - All commands
 
 ```bash
