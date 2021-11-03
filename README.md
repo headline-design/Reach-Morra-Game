@@ -40,7 +40,7 @@ npm run start
 After installing reach, run the following line in reach/tut in a Linux shell:
 
 ```bash
-$ REACH_CONNECTOR_MODE=ALGO ./reach devnet
+$ REACH_CONNECTOR_MODE=ALGO-devnet ./reach devnet
 ```
 
 After starting the devnet, find the ip address that corresponds to your localhost (this will allow testing on different devices on the same local network).
