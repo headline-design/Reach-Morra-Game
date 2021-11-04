@@ -12,6 +12,7 @@ This is a frontend application for running a "Morra game" created by Russ Fustin
 ## Reach - All commands
 
 ```bash
+reach compile overview/index.rsh
 $ mkdir -p ~/reach/tut && cd ~/reach/tut
 $ curl https://docs.reach.sh/reach -o reach ; chmod +x reach
 $ ./reach version

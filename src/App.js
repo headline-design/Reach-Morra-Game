@@ -15,10 +15,10 @@ const reach = loadStdlib('ALGO-devnet')
 const myEnv = reach.providerEnvByName('LocalHost');
 console.log(myEnv)
 Object.assign(myEnv, {
-  ALGO_SERVER:"https://algocloud.org",
-  ALGO_PORT: "4180",
-  ALGO_INDEXER_SERVER: "https://algocloud.org",
-  ALGO_INDEXER_PORT: "8980",
+  ALGO_SERVER:"https://4180-jade-cow-0md3r5d5.ws-us17.gitpod.io/",
+  ALGO_PORT: "",
+  ALGO_INDEXER_SERVER: "https://8980-jade-cow-0md3r5d5.ws-us17.gitpod.io/",
+  ALGO_INDEXER_PORT: "",
   REACH_ISOLATED_NETWORK: "yes",
   REACH_DEBUG: "false",
 })
@@ -123,10 +123,10 @@ class App extends Component {
   render() {
     return (<div align="center">
       <PipelineShell width="400px">
-        <Heading>Reach Morra via Algorand</Heading>
-        <Button onClick={() => { myLoading = true; test() }}>Deploy Morra!</Button><br></br>
-        <div align="center">{this.state.loading ? <Loader bg="unset" color="blue" size="40px" /> : null}</div>
-        {this.state.cLog.map(row => { return (<Text>{row}</Text>) })}
+        <Heading>Reach + PIPELINE-UI</Heading>
+        <Button className="morra-btn" onClick={() => { myLoading = true; test() }}>Deploy Morra!</Button><br></br>
+        <div className="spinz" align="center">{this.state.loading ? <Loader bg="unset" position="fixed" color="blue" size="40px" /> : null}</div>
+        <div className="feed-1"><label>Morra feed:</label><div className="feed" bg="unset">{this.state.cLog.map(row => { return (<Text>{row}</Text>) })}</div></div>
       </PipelineShell>
     </div>)
   }
