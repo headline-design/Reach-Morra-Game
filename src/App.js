@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import './App.css';
 import { loadStdlib } from '@reach-sh/stdlib'
 import * as backend from './build/index.main.mjs';
-import { Button, Heading, PipelineShell, Loader, Text, Flex } from 'pipeline-ui';
+import { Button, Box, Modal, Card, Heading, PipelineShell, Loader, Text, Flex } from 'pipeline-ui';
 
 var myLog = [];
 var myLoading = false;
@@ -22,6 +22,7 @@ Object.assign(myEnv, {
   REACH_ISOLATED_NETWORK: "yes",
   REACH_DEBUG: "false",
 })
+
 reach.setProviderByEnv(myEnv);
 
 async function test() {
@@ -99,6 +100,7 @@ async function test() {
       ...reach.hasConsoleLogger,
     }),
   ]);
+  
   const afterAlice = await getBalance(accAlice);
   const afterBob = await getBalance(accBob);
 
@@ -126,9 +128,8 @@ class App extends Component {
         <Heading>Reach + PIPELINE-UI</Heading>
         <Button className="morra-btn" onClick={() => { myLoading = true; test() }}><div className="spinz">{this.state.loading ? <Loader bg="unset" color="white" size="22px" /> : null}</div>Deploy Morra!</Button><br></br>
         <div className="feed-1"><label>Morra feed:</label><div className="feed" bg="unset">{this.state.cLog.map(row => { return (<Text>{row}</Text>) })}</div></div>
-      </PipelineShell>
-      <div class="brief"><h1>Morra Demo</h1><p font-weight="1">This application is a demonstration of Reach's Algorand Devnet (a virtual blockchain), Morra - a smart contract-powered game simulation, and PIPELINE-UI - the React frontend devkit built by HEADLINE INC. This demo is an open-source tool used by blockchain engineers to visualize smart contract logic and construction frameworks. To learn more, please visit the developer portals: <a href="https://developer.algorand.org/">Algorand</a>, <a href="https://docs.reach.sh/">Reach</a>, and <a href="https://pipeline-ui.com">PIPELINE-UI</a>. </p></div>
-    </div>)
+      </PipelineShell>  </div>)
   }
 }
+
 export default App;
