@@ -1,6 +1,8 @@
 .pipeline-shell {
   padding: 1rem !important;
-  margin: 1rem !important;
+  margin-top: 2rem !important;
+  background-color: white;
+  z-index: 100;
 }
 
 button.morra-btn:hover {
@@ -46,6 +48,7 @@ label {
 
 h2.pipeline-box {
   font-size: 1.5rem !important;
+  opacity: 85%;
   font-family: "Libre Franklin","Arial",Arial,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans","Liberation Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
 }
 
@@ -236,6 +239,23 @@ h2.pipeline-box {
 }
 
 .spinz {
-  z-index: 100;
   position: absolute;
+  margin-left: -29px!important;
+  margin-top: -2px !important;
+  opacity: 85%;
+}
+
+.brief {
+  bottom: 3%;
+  position: absolute;
+  padding-right: 5%;
+  text-align: start;
+  padding-left: 5%;
+  color: #4b5864;
+  z-index: -10;
+  opacity: 90%;
+}
+
+h1{
+  font-weight: 400;
 }

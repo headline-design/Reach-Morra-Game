@@ -15,9 +15,9 @@ const reach = loadStdlib('ALGO-devnet')
 const myEnv = reach.providerEnvByName('LocalHost');
 console.log(myEnv)
 Object.assign(myEnv, {
-  ALGO_SERVER:"https://4180-jade-cow-0md3r5d5.ws-us17.gitpod.io/",
+  ALGO_SERVER:"https://4180-violet-anteater-ao8zsji8.ws-us17.gitpod.io/",
   ALGO_PORT: "",
-  ALGO_INDEXER_SERVER: "https://8980-jade-cow-0md3r5d5.ws-us17.gitpod.io/",
+  ALGO_INDEXER_SERVER: "https://8980-violet-anteater-ao8zsji8.ws-us17.gitpod.io/",
   ALGO_INDEXER_PORT: "",
   REACH_ISOLATED_NETWORK: "yes",
   REACH_DEBUG: "false",
@@ -35,8 +35,8 @@ async function test() {
   const beforeAlice = await getBalance(accAlice);
   const beforeBob = await getBalance(accBob);
 
-  const ctcAlice = accAlice.deploy(backend);
-  const ctcBob = accBob.attach(backend, ctcAlice.getInfo());
+  const ctcAlice = accAlice.contract(backend);
+  const ctcBob = accBob.contract(backend, ctcAlice.getInfo());
 
   const FINGERS = [0, 1, 2, 3, 4, 5];
   const GUESS = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
@@ -124,10 +124,10 @@ class App extends Component {
     return (<div align="center">
       <PipelineShell width="400px">
         <Heading>Reach + PIPELINE-UI</Heading>
-        <Button className="morra-btn" onClick={() => { myLoading = true; test() }}>Deploy Morra!</Button><br></br>
-        <div className="spinz" align="center">{this.state.loading ? <Loader bg="unset" position="fixed" color="blue" size="40px" /> : null}</div>
+        <Button className="morra-btn" onClick={() => { myLoading = true; test() }}><div className="spinz">{this.state.loading ? <Loader bg="unset" color="white" size="22px" /> : null}</div>Deploy Morra!</Button><br></br>
         <div className="feed-1"><label>Morra feed:</label><div className="feed" bg="unset">{this.state.cLog.map(row => { return (<Text>{row}</Text>) })}</div></div>
       </PipelineShell>
+      <div class="brief"><h1>Morra Demo</h1><p font-weight="1">This application is a demonstration of Reach's Algorand Devnet (a virtual blockchain), Morra - a smart contract-powered game simulation, and PIPELINE-UI - the React frontend devkit built by HEADLINE INC. This demo is an open-source tool used by blockchain engineers to visualize smart contract logic and construction frameworks. To learn more, please visit the developer portals: <a href="https://developer.algorand.org/">Algorand</a>, <a href="https://docs.reach.sh/">Reach</a>, and <a href="https://pipeline-ui.com">PIPELINE-UI</a>. </p></div>
     </div>)
   }
 }
