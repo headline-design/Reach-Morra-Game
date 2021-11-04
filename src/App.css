@@ -39,7 +39,7 @@ button.morra-btn {
   width: 100%;
   font-size: 1.1rem;
   font-weight: 600;
-  opacity: 90%;
+  opacity: .9;
 }
 
 label {
@@ -52,7 +52,7 @@ label {
 
 h2.pipeline-box {
   font-size: 1.5rem !important;
-  opacity: 80%;
+  opacity: .8;
   font-family: "Libre Franklin","Arial",Arial,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans","Liberation Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
 }
 
@@ -246,5 +246,5 @@ h2.pipeline-box {
   position: absolute;
   margin-left: -29px!important;
   margin-top: -2px !important;
-  opacity: 85%;
+  opacity: .85;
 }
